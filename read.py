@@ -22,3 +22,41 @@ for d in data:
 print('一共有', len(new), '筆留言長度小於100')
 print(new[0])
 print(new[1])
+
+# 篩選有提到good的留言
+good = []
+for d in data:
+    if 'good' in d:
+        good.append(d)
+print('一共有', len(good), '筆留言包含good')
+
+
+print(data[0])
+
+# 文字記數
+wc = {} # word_count
+for d in data:
+    words = d.split()
+    for word in words:
+        if word in wc:
+            wc[word] += 1
+        else:
+            wc[word] = 1 # 新增新的key進入wc字典
+
+for word in wc: #這邊的word表示字典內的key（左邊）
+    if wc[word] > 1000000:
+        print(word, wc[word])
+print('留言裡共有', len(wc), '種單字')
+
+while True:
+    word = input('請問你想查什麼字：')
+    if word == 'q':
+        break
+    if word in wc:
+        print(word, '出現過的次數為：', wc[word])
+    else:
+        print('這個字沒有出現過喔！')
+
+print('感謝使用本查詢功能')
+
+
